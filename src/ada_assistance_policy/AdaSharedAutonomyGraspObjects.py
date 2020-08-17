@@ -219,7 +219,7 @@ if __name__ == "__main__":
   
   env,robot = Initialize_Adapy(args, env_path=env_path)
 
-  finish_trial_func_withrobot = partial(Finish_Trial_Func, robot=robot)
+  finish_trial_func_withrobot = partial(Finish_Trial_Func, robot=robot) # used to close the gripper
   for i in range(1):
     Reset_Robot(robot)
     goals, goal_objects = Initialize_Goals(env, robot, randomize_goal_init=False)
