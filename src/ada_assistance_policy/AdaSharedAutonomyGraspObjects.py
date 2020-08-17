@@ -196,7 +196,6 @@ def Reset_Robot(robot):
 
 
 if __name__ == "__main__":
-  print("Test")
   parser = argparse.ArgumentParser('Ada Assistance Policy')
   parser.add_argument('-s', '--sim', action='store_true', default=SIMULATE_DEFAULT,
                       help='simulation mode')
