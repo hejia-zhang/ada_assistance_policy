@@ -53,14 +53,14 @@ def GetCylinderTSRs(radius, height, manip, T0_w = np.eye(4), Tw_e = np.eye(4), l
                         [ 0., 0.,  0., 1.]])
 
 
-    cylinderTSR1 = TSR(T0_w=T0_w, Tw_e=Tw_ee, Bw=Bw, manip=manipidx)
+    cylinderTSR1 = TSR(T0_w=T0_w, Tw_e=Tw_ee, Bw=Bw, manipindex=manipidx)
     #cylinder_tsrs.append(cylinderTSR1)
 
     Tw_ee = Tw_ee.copy()
     Tw_ee[:3,:3] = np.dot(Tw_ee[:3,:3], rodrigues([0., 0., np.pi]))
     #Tw_ee[:3,:3] = np.dot(Tw_ee[:3,:3],np.dot(rodrigues([-np.pi/2, 0, 0]), rodrigues([0, 0, np.pi/2.])))
     #Tw_ee[:3,3] = [0., radius, height]
-    cylinderTSR2 = TSR(T0_w=T0_w, Tw_e=Tw_ee, Bw=Bw, manip=manipidx)
+    cylinderTSR2 = TSR(T0_w=T0_w, Tw_e=Tw_ee, Bw=Bw, manipindex=manipidx)
     cylinder_tsrs.append(cylinderTSR2)
 
     return cylinder_tsrs
@@ -182,7 +182,7 @@ def GetTSRListForBoxObject(obj, manip,
         Tw_ee = Tw_e.copy()
         Tw_ee[:3,:3] = np.dot(Tw_ee[:3,:3], rodrigues([-np.pi/2, 0, 0]))
         Tw_ee[:3,3] += [0, -obj_bb.extents()[1] - ee_offset, 0.]
-        boxTSR1 = TSR(T0_w=T0_w,Tw_e=Tw_ee, Bw=Bw, manip=manipidx)
+        boxTSR1 = TSR(T0_w=T0_w,Tw_e=Tw_ee, Bw=Bw, manipindex=manipidx)
         box_tsrs.append(boxTSR1)
 
         Bw = np.array([[  .0,    .0],
@@ -195,7 +195,7 @@ def GetTSRListForBoxObject(obj, manip,
         Tw_ee = Tw_e.copy()
         Tw_ee[:3,:3] = np.dot(Tw_ee[:3,:3],np.dot(rodrigues([-np.pi/2, 0, 0]), rodrigues([0, 0, np.pi])))
         Tw_ee[:3,3] += [0, -obj_bb.extents()[1] - ee_offset, 0.]
-        boxTSR2 = TSR(T0_w=T0_w,Tw_e=Tw_ee, Bw=Bw, manip=manipidx)
+        boxTSR2 = TSR(T0_w=T0_w,Tw_e=Tw_ee, Bw=Bw, manipindex=manipidx)
         box_tsrs.append(boxTSR2)
 
 
@@ -209,7 +209,7 @@ def GetTSRListForBoxObject(obj, manip,
         Tw_ee = Tw_e.copy()
         Tw_ee[:3,:3] = np.dot(Tw_ee[:3,:3], rodrigues([np.pi/2, 0, 0]))
         Tw_ee[:3, 3] += [0, obj_bb.extents()[1] + ee_offset, 0.]
-        boxTSR3 = TSR(T0_w=T0_w,Tw_e=Tw_ee, Bw=Bw, manip=manipidx)
+        boxTSR3 = TSR(T0_w=T0_w,Tw_e=Tw_ee, Bw=Bw, manipindex=manipidx)
         box_tsrs.append(boxTSR3)
 
         Bw = np.array([[  .0,    .0],
@@ -221,7 +221,7 @@ def GetTSRListForBoxObject(obj, manip,
         Tw_ee = Tw_e.copy()
         Tw_ee[:3,:3] = np.dot(Tw_ee[:3,:3],np.dot(rodrigues([0, np.pi/2, 0]), rodrigues([0, 0, np.pi/2])))
         Tw_ee[:3, 3] += [0., obj_bb.extents()[1] + ee_offset, 0.]
-        boxTSR4 = TSR(T0_w=T0_w,Tw_e=Tw_ee, Bw=Bw, manip=manipidx)
+        boxTSR4 = TSR(T0_w=T0_w,Tw_e=Tw_ee, Bw=Bw, manipindex=manipidx)
         box_tsrs.append(boxTSR4)
 
     if 2.0*obj_bb.extents()[1] < max_spread:
@@ -236,7 +236,7 @@ def GetTSRListForBoxObject(obj, manip,
         Tw_ee = Tw_e.copy()
         Tw_ee[:3,:3] = np.dot(Tw_ee[:3,:3], rodrigues([-np.pi/2, 0, 0]))
         Tw_ee[:3,3] += [-obj_bb.extents()[0] - ee_offset, 0., 0.]
-        boxTSR5 = TSR(T0_w=T0_w,Tw_e=Tw_ee, Bw=Bw, manip=manipidx)
+        boxTSR5 = TSR(T0_w=T0_w,Tw_e=Tw_ee, Bw=Bw, manipindex=manipidx)
         box_tsrs.append(boxTSR5)
 
         Bw = np.array([[  .0,    .0],
@@ -249,7 +249,7 @@ def GetTSRListForBoxObject(obj, manip,
         Tw_ee = Tw_e.copy()
         Tw_ee[:3,:3] = np.dot(Tw_ee[:3,:3],np.dot(rodrigues([-np.pi/2, 0, 0]), rodrigues([0, 0, np.pi])))
         Tw_ee[:3,3] += [-obj_bb.extents()[0] - ee_offset, 0., 0.]
-        boxTSR6 = TSR(T0_w=T0_w,Tw_e=Tw_ee, Bw=Bw, manip=manipidx)
+        boxTSR6 = TSR(T0_w=T0_w,Tw_e=Tw_ee, Bw=Bw, manipindex=manipidx)
         box_tsrs.append(boxTSR6)
 
 
@@ -263,7 +263,7 @@ def GetTSRListForBoxObject(obj, manip,
         Tw_ee = Tw_e.copy()
         Tw_ee[:3,:3] = np.dot(Tw_ee[:3,:3], rodrigues([np.pi/2, 0, 0]))
         Tw_ee[:3, 3] += [obj_bb.extents()[0] + ee_offset, 0., 0.]
-        boxTSR7 = TSR(T0_w=T0_w,Tw_e=Tw_ee, Bw=Bw, manip=manipidx)
+        boxTSR7 = TSR(T0_w=T0_w,Tw_e=Tw_ee, Bw=Bw, manipindex=manipidx)
         box_tsrs.append(boxTSR7)
 
         Bw = np.array([[  .0,    .0],
@@ -275,7 +275,7 @@ def GetTSRListForBoxObject(obj, manip,
         Tw_ee = Tw_e.copy()
         Tw_ee[:3,:3] = np.dot(Tw_ee[:3,:3],np.dot(rodrigues([0, np.pi/2, 0]), rodrigues([0, 0, np.pi/2])))
         Tw_ee[:3, 3] += [obj_bb.extents()[0] + ee_offset, 0., 0.]
-        boxTSR8 = TSR(T0_w=T0_w,Tw_e=Tw_ee, Bw=Bw, manip=manipidx)
+        boxTSR8 = TSR(T0_w=T0_w,Tw_e=Tw_ee, Bw=Bw, manipindex=manipidx)
         box_tsrs.append(boxTSR8)
 
     return box_tsrs
